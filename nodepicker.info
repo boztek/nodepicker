@@ -1,0 +1,7 @@
+; $Id: nodepicker.info,v 1.1 2010/03/08 12:08:53 blixxxa Exp $
+name = "Node Picker"
+description = "A node picker for WYSIWYG editors that inserts links into content."
+core = "6.x"
+dependencies[] = "views"
+dependencies[] = "wysiwyg"
+dependencies[] = "jquery_ui"
