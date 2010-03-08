@@ -1,5 +1,5 @@
 <?php
-// $Id: nodepicker.views_default.inc,v 1.1 2010/03/08 12:15:01 blixxxa Exp $
+// $Id: nodepicker.views_default.inc,v 1.2 2010/03/08 12:25:37 blixxxa Exp $
 
 /**
  * @file
@@ -24,6 +24,36 @@ function nodepicker_views_default_views() {
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
   $handler = $view->new_display('default', 'Defaults', 'default');
   $handler->override_option('fields', array(
+    'nid' => array(
+      'label' => 'Nid',
+      'alter' => array(
+        'alter_text' => 0,
+        'text' => '',
+        'make_link' => 0,
+        'path' => '',
+        'link_class' => '',
+        'alt' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 0,
+        'max_length' => '',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'strip_tags' => 0,
+        'html' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'link_to_node' => 0,
+      'exclude' => 1,
+      'id' => 'nid',
+      'table' => 'node',
+      'field' => 'nid',
+      'relationship' => 'none',
+    ),
     'title' => array(
       'label' => 'Title',
       'alter' => array(
@@ -103,17 +133,17 @@ function nodepicker_views_default_views() {
       'field' => 'status',
       'relationship' => 'none',
     ),
-    'title_1' => array(
+    'nothing' => array(
       'label' => 'Action',
       'alter' => array(
-        'alter_text' => 1,
         'text' => 'Insert link',
-        'make_link' => 0,
-        'path' => '',
-        'link_class' => '',
-        'alt' => '',
+        'make_link' => 1,
+        'path' => 'node/[nid]',
+        'link_class' => 'nodepicker-insert',
+        'alt' => '[title]',
         'prefix' => '',
         'suffix' => '',
+        'target' => '',
         'help' => '',
         'trim' => 0,
         'max_length' => '',
@@ -122,11 +152,13 @@ function nodepicker_views_default_views() {
         'strip_tags' => 0,
         'html' => 0,
       ),
-      'link_to_node' => 1,
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
       'exclude' => 0,
-      'id' => 'title_1',
-      'table' => 'node',
-      'field' => 'title',
+      'id' => 'nothing',
+      'table' => 'views',
+      'field' => 'nothing',
       'relationship' => 'none',
     ),
   ));
@@ -193,8 +225,9 @@ function nodepicker_views_default_views() {
   $handler->override_option('title', 'Node picker nodes');
   $handler->override_option('header_format', '2');
   $handler->override_option('header_empty', 0);
-  $handler->override_option('empty', '<p>No Results.</p>');
-  $handler->override_option('empty_format', '2');
+  $handler->override_option('empty', 'No Results.');
+  $handler->override_option('empty_format', '1');
+  $handler->override_option('use_ajax', TRUE);
   $handler->override_option('use_pager', '1');
   $handler->override_option('style_plugin', 'table');
   $handler->override_option('style_options', array(
@@ -232,6 +265,7 @@ function nodepicker_views_default_views() {
     ),
     'default' => 'title',
   ));
+
 
   $views[$view->name] = $view;
   
